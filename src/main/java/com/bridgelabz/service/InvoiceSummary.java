@@ -4,8 +4,10 @@ public class InvoiceSummary {
     private final double totalFare;
     private final int numberOfRides;
     private final double averageFare;
+    public static String rideCategory;
 
-    public InvoiceSummary(double totalFare, int numberOfRides) {
+    public InvoiceSummary(double totalFare, int numberOfRides, String rideCategory) {
+        this.rideCategory = rideCategory;
         this.totalFare = totalFare;
         this.numberOfRides = numberOfRides;
         this.averageFare = this.totalFare / this.numberOfRides;
