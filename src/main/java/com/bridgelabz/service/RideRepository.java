@@ -1,6 +1,4 @@
-package com.bridgelabz.test;
-
-import com.bridgelabz.service.Ride;
+package com.bridgelabz.service;
 
 import java.util.Map;
 
