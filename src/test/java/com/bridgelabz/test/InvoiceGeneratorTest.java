@@ -1,8 +1,6 @@
 package com.bridgelabz.test;
 
-import com.bridgelabz.service.InvoiceGenerator;
-import com.bridgelabz.service.InvoiceSummary;
-import com.bridgelabz.service.Ride;
+import com.bridgelabz.service.*;
 import org.junit.Assert;
 import org.junit.Test;
 
