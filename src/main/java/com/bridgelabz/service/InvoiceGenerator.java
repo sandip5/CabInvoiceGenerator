@@ -1,36 +1,23 @@
 package com.bridgelabz.service;
 
+import com.bridgelabz.model.Ride;
+import com.bridgelabz.utility.InvoiceSummary;
+import com.bridgelabz.utility.RideCategory;
+
+import java.util.Arrays;
+
 public class InvoiceGenerator {
 
-    public double calculateFare(double distance, int time, int COST_PER_TIME,
-                                double MINIMUM_COST_PER_KM, double MINIMUM_FARE) {
-        double totalFare = distance * MINIMUM_COST_PER_KM + time * COST_PER_TIME;
-        return Math.max(totalFare, MINIMUM_FARE);
+    public double calculateFare(double distance, int time, RideCategory rideCategory) {
+        double totalFare = distance * rideCategory.minimumCostPerKM + time * rideCategory.costPerTime;
+        return Math.max(totalFare, rideCategory.minimumFare);
     }
 
     public InvoiceSummary calculateFare(Ride[] rides) {
-        double totalFare = 0;
-        String rideCategory = InvoiceSummary.rideCategory;
-        for (Ride ride : rides) {
-            totalFare += this.calculateFare(ride.distance, ride.time, rideCategory);
-        }
+        double totalFare;
+        RideCategory rideCategory = InvoiceSummary.rideCategory;
+        totalFare = Arrays.stream(rides).mapToDouble(ride -> this.calculateFare(ride.distance, ride.time, rideCategory))
+                .sum();
         return new InvoiceSummary(totalFare, rides.length, rideCategory);
-    }
-
-    public double calculateFare(double distance, int time, String rideCategory) {
-        switch (rideCategory) {
-            case "PREMIUM_RIDES":
-                int COST_PER_TIME = 2;
-                double MINIMUM_COST_PER_KM = 15.0;
-                double MINIMUM_FARE = 20.0;
-                return calculateFare(distance, time, COST_PER_TIME, MINIMUM_COST_PER_KM, MINIMUM_FARE);
-            case "NORMAL_RIDES":
-                COST_PER_TIME = 1;
-                MINIMUM_COST_PER_KM = 10.0;
-                MINIMUM_FARE = 5.0;
-                return calculateFare(distance, time, COST_PER_TIME, MINIMUM_COST_PER_KM, MINIMUM_FARE);
-            default:
-                throw new IllegalStateException("Unexpected value: " + rideCategory);
-        }
     }
 }

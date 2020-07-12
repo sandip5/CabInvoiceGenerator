@@ -1,4 +1,6 @@
-package com.bridgelabz.service;
+package com.bridgelabz.repository;
+
+import com.bridgelabz.model.Ride;
 
 import java.util.Map;
 

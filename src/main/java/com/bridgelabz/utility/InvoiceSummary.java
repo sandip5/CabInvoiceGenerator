@@ -1,12 +1,12 @@
-package com.bridgelabz.service;
+package com.bridgelabz.utility;
 
 public class InvoiceSummary {
+    public static RideCategory rideCategory;
     private final double totalFare;
     private final int numberOfRides;
     private final double averageFare;
-    public static String rideCategory;
 
-    public InvoiceSummary(double totalFare, int numberOfRides, String rideCategory) {
+    public InvoiceSummary(double totalFare, int numberOfRides, RideCategory rideCategory) {
         this.rideCategory = rideCategory;
         this.totalFare = totalFare;
         this.numberOfRides = numberOfRides;
